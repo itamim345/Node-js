@@ -5,15 +5,30 @@ const port = 4000;
 app.get('/', (req, res) => {
     res.send("Hey! I'm node one! we are done for now:)")
 })
-
+//Practicing Query parameter
 app.get('/users', (req, res) => {
-    res.send(users)
+    const search = req.query.search;
+    if(search){
+        const searchResult = users.filter(user => user.name.toLocaleLowerCase().includes(search));
+        res.send(searchResult)
+    }else {
+        res.send(users)
+    }
+    
 })
-
+//Practicing Dynamic api
 app.get('/users/:id', (req, res) => {
     const id = req.params.id;
     const user = users[id]
     res.send(user)
+})
+
+app.get('/fruits', (req, res) => {
+    res.send(['Orange','Guava','Banana','pine-apple','Jackfruit'])
+})
+
+app.get('/fruits/banana/singpuri', (req,res) => {
+    res.send("tasty banana!")
 })
 
 const users = [
