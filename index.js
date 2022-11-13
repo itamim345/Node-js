@@ -1,6 +1,9 @@
 const express = require('express');
+var cors = require('cors');
 const app = express();
 const port = 4000;
+
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send("Hey! I'm node one! we are done for now:)")
